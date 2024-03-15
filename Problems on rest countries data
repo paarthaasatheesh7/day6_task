@@ -1,0 +1,90 @@
+// 1.a- All the countries from Asia continent/region using filter function:
+
+fetch('https://restcountries.com/v3.1/all')
+  .then(res => res.json())
+  .then(data => {
+    
+    // Filter countries from Asia Continent.
+    const asiaCountries = data.filter(country => country.region === 'Asia');
+
+    // Getting the country names
+    const asiaCountryNames = asiaCountries.map(country => country.name.common);
+
+    console.log("Countries in Asia:", asiaCountryNames);
+  });
+
+
+  // 1.b- All the countries with a population of less than 2 lakhs using Filter function:
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    // Filter countries with population less than 200,000
+    const countryPopulation = data.filter(country => {
+      return country.population < 200000;
+    });
+
+    // Getting the countries with population <200000
+    const countryNames = countryPopulation.map(country => country.name.common);
+
+    console.log("Countries with population less than 2 lakhs:", countryNames);
+  });
+
+
+   // 1.c Name, Capital, Flag, of countries using forEach function:
+
+   fetch('https://restcountries.com/v3.1/all')
+   .then(response => response.json())
+   .then(data => {
+     // Iterate over each country using forEach
+     data.forEach(country => {
+       const name = country.name.common;
+       const capital = country.capital[0]; 
+       const flag = country.flags.svg;
+ 
+       console.log("Name:", name);
+       console.log("Capital:", capital);
+       console.log("Flag:", flag);
+       console.log("-----------------------------");
+     });
+   })
+
+
+
+  // 1.d- The total population of countries using reduce function:
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    // Total population using reduce
+    const totalPopulation = data.reduce((accumulator, country) => {
+      return accumulator + country.population;
+    }, 0);
+
+    console.log("Total population of all countries:", totalPopulation);
+  });
+
+
+  // 1.e- The country that uses US dollars as currency:
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    // Filter countries that use US dollars as currency
+    const countriesWithUSD = data.filter(country => {
+      return country.currencies && country.currencies.USD;
+    });
+
+    // Getting the name of the country
+    const countryNames = countriesWithUSD.map(country => country.name.common);
+
+    console.log("Countries that use US dollars as currency:", countryNames);
+  });
+  
+
+ 
+  
+
+
+  
+
+
+
+  
